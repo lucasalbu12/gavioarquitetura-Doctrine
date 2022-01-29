@@ -14,10 +14,12 @@ class Projeto
      * @Column (type="integer")
      */
     private $id;
+
     /**
-     * @ManyToOne(targetEntity="Categoria")
+     * @Column (type="string")
      */
     private $categoria;
+
     /**
      * @Column (type="string")
      */
@@ -29,7 +31,7 @@ class Projeto
     /**
      * @Column (type="string")
      */
-    private $data;
+    private $ano;
         /**
      * @Column (type="string")
      */
@@ -38,14 +40,131 @@ class Projeto
      * @Column (type="text")
      */
     private $descricao;
-        /**
+
+    /**
      * @Column (type="string")
      */
-    private $imagemCapa;
-        /**
-     * @Column (type="boolean")
+    private $arquivoImagem;
+
+    /**
+     * @OneToMany (targetEntity="ImagensProjeto", mappedBy="projeto")
      */
+    private $fotosProjeto;
+
+
     private $carrossel;
+
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria($categoria): void
+    {
+        $this->categoria = $categoria;
+    }
+
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    public function setTitulo($titulo): void
+    {
+        $this->titulo = $titulo;
+    }
+
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    public function setArea($area): void
+    {
+        $this->area = $area;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setAno($ano): void
+    {
+        $this->ano = $ano;
+    }
+
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    public function setEndereco($endereco): void
+    {
+        $this->endereco = $endereco;
+    }
+
+    public function getDescricao()
+    {
+        return $this->descricao;
+    }
+
+    public function setDescricao($descricao): void
+    {
+        $this->descricao = $descricao;
+    }
+
+    public function getImagemCapa()
+    {
+        return $this->imagemCapa;
+    }
+
+    public function setImagemCapa($imagemCapa): void
+    {
+        $this->imagemCapa = $imagemCapa;
+    }
+
+    public function getCarrossel()
+    {
+        return $this->carrossel;
+    }
+
+    public function setCarrossel($carrossel): void
+    {
+        $this->carrossel = $carrossel;
+    }
+
+    public function getFotosProjeto()
+    {
+        return $this->fotosProjeto;
+    }
+
+    public function setFotosProjeto($fotosProjeto): void
+    {
+        $this->fotosProjeto = $fotosProjeto;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function
+    getArquivoImagem()
+    {
+        return $this->arquivoImagem;
+    }
+
+    /**
+     * @param mixed $arquivoImagem
+     */
+    public function setArquivoImagem($arquivoImagem): void
+    {
+        $this->arquivoImagem = $arquivoImagem;
+    }
 
 
 }

@@ -2,6 +2,9 @@
 
 namespace Projects\Gavio\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * @Entity
  * @Table (name="categorias")
@@ -20,8 +23,46 @@ class Categoria
      */
     private $nomeCategoria;
 
+
+
+    public function __construct()
+    {
+        $this->projetos = new ArrayCollection();
+    }
+
     /**
-     * @OneToMany(targetEntity="Projeto", mappedBy="categoria")
+     * @return mixed
      */
-    private $projetos;
+    public function getNomeCategoria()
+    {
+        return $this->nomeCategoria;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+
+    /**
+     * @param mixed $nomeCategoria
+     */
+    public function setNomeCategoria($nomeCategoria): void
+    {
+        $this->nomeCategoria = $nomeCategoria;
+    }
+
+
 }
