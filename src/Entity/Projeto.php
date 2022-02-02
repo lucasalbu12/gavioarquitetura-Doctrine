@@ -84,9 +84,9 @@ class Projeto
         $this->area = $area;
     }
 
-    public function getData()
+    public function getAno()
     {
-        return $this->data;
+        return $this->ano;
     }
 
     public function setAno($ano): void
@@ -144,27 +144,29 @@ class Projeto
         $this->fotosProjeto = $fotosProjeto;
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function
-    getArquivoImagem()
+
+
+    public function getArquivoImagem()
     {
         return $this->arquivoImagem;
     }
 
-    /**
-     * @param mixed $arquivoImagem
-     */
+
     public function setArquivoImagem($arquivoImagem): void
     {
         $this->arquivoImagem = $arquivoImagem;
     }
 
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
 }

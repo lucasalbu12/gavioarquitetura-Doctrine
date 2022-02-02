@@ -21,6 +21,8 @@ class Persistencia implements RequisitionHandlerInterface
 
     public function handle(): void
     {
+        $imagemPrincipal = filter_input(INPUT_POST, 'imagemAtual', FILTER_SANITIZE_STRING);
+
         $categoriaId = filter_input(INPUT_POST, 'categoria_id', FILTER_VALIDATE_INT);
         $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
         $area = filter_input(INPUT_POST, 'area', FILTER_SANITIZE_STRING);
@@ -48,7 +50,6 @@ class Persistencia implements RequisitionHandlerInterface
         $projeto->setAno($ano);
         $projeto->setEndereco($endereco);
         $projeto->setDescricao($descricao);
-        $projeto->setArquivoImagem($arquivo['name']);
 
         switch ($categoriaId){
             case $categoriaId === 1:
@@ -62,9 +63,29 @@ class Persistencia implements RequisitionHandlerInterface
                 break;
         }
 
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        if(!is_null($id) && $id !== false){
+            $projeto->setId($id);
+
+            if(!isset($arquivo)){
+                $projeto->setArquivoImagem($imagemPrincipal);
+            } else{
+                $projeto->setArquivoImagem($arquivo['name']);
+                unlink($imgPath.$imagemPrincipal);
+            }
 
 
-        $this->entityManager->persist($projeto);
+
+            $this->entityManager->merge($projeto);
+
+        } else{
+            $projeto->setArquivoImagem($arquivo['name']);
+            $this->entityManager->persist($projeto);
+
+        }
+
+
         $this->entityManager->flush();
 
         header('Location: /lista-projetos');

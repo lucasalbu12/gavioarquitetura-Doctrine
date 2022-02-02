@@ -10,7 +10,7 @@
 
 
             <div>
-                <a href="/alterar-curso?id=<?= $projeto->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
+                <a href="/alterar-projeto?id=<?= $projeto->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
                 <a href="/excluir-projeto?id=<?= $projeto->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
             </div>
 
