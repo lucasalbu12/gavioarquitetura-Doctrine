@@ -16,7 +16,7 @@ class EntityManagerCreator
         $dbParams = array(
             'driver' => 'pdo_mysql',
             'host' => 'localhost',
-            'dbname' => 'gavioarquitetura',
+            'dbname' => 'arquiteturagavio',
             'user' => 'root',
             'password' => ''
         );

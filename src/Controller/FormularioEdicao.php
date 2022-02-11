@@ -41,6 +41,6 @@ class FormularioEdicao implements RequisitionHandlerInterface
        $titulo = 'Alterar Projeto';
        $categorias = $this->repositorioDeCategorias->findAll();
        $projeto = $this->repositorioDeProjetos->find($id);
-       require __DIR__ . '/../../view/projetos/formulario.php';
+       require __DIR__ . '/../../view/projetos/formulario-edicao.php';
     }
 }

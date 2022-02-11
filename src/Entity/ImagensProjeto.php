@@ -25,8 +25,36 @@ class ImagensProjeto
      */
     private $projeto;
 
+
+    public function getNome(): string
+    {
+        return $this->nome;
+    }
+
+
+    public function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+
+    public function getProjeto(): Projeto
+    {
+        return $this->projeto;
+    }
+
+
+    public function setProjeto(Projeto $projeto): self
+    {
+        $this->projeto = $projeto;
+        return $this;
+    }
+
     /**
-     * @Column (type="string")
+     * @return string
      */
-    private string $imagePath;
+    public function getId(): string
+    {
+        return $this->id;
+    }
 }

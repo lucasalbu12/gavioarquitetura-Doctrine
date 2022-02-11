@@ -30,6 +30,9 @@ class Persistencia implements RequisitionHandlerInterface
         $endereco = filter_input(INPUT_POST, 'endereco', FILTER_SANITIZE_STRING);
         $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
 
+        $tituloAtual = filter_input(INPUT_POST, 'tituloAtual', FILTEr);
+
+
         $imgPath = __DIR__ . '/../../src/Images/projects/head/';
         $arquivo = $_FILES['arquivoImagem'];
         $arquivoNovo = explode('.', $arquivo['name']);
@@ -44,6 +47,7 @@ class Persistencia implements RequisitionHandlerInterface
 
 
         $projeto = new Projeto();
+
 
         $projeto->setTitulo($titulo);
         $projeto->setArea($area);

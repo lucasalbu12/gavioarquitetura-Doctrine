@@ -20,7 +20,7 @@ class Exclusao implements RequisitionHandlerInterface
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         if(is_null($id) || $id === false){
-            header("Location: /listar-cursos");
+            header("Location: /listar-projetos");
             return;
         }
 
@@ -33,6 +33,7 @@ class Exclusao implements RequisitionHandlerInterface
         $this->entityManager->flush();
 
         header('Location: /lista-projetos');
+        die();
 
     }
 }

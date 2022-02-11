@@ -20,6 +20,8 @@
         <input type="hidden" name='MAX_FILE_SIZE' value='999999999'>
         <div class="form-group"><input type="file" name='arquivoImagem' required></div>
         <div class="form-group"> <button class="btn btn-primary">Salvar</button></div>
+
+        <input type="text" style="display: block" name="tituloAtual" value="<?= $projeto->getTitulo(); ?>">
     </form>
 
 </div>

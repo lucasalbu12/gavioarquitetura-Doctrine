@@ -7,10 +7,11 @@
             <div><?= $projeto->getId(); ?></div>
             <div><?= $projeto->getTitulo(); ?></div>
             <div><img src="<?= $headImgPath.$projeto->getArquivoImagem();?>" alt="" style="max-width: 250px"></div>
+            <div><?= $projeto->getCategoria(); ?></div>
 
 
             <div>
-                <a href="/alterar-projeto?id=<?= $projeto->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
+                <a href="/individual-projeto?id=<?= $projeto->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
                 <a href="/excluir-projeto?id=<?= $projeto->getId(); ?>" class="btn btn-danger btn-sm">Excluir</a>
             </div>
 

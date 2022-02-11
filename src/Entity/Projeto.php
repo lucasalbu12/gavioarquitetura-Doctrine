@@ -2,6 +2,10 @@
 
 namespace Projects\Gavio\Entity;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * @Entity
  * @Table (name="projetos")
@@ -47,12 +51,17 @@ class Projeto
     private $arquivoImagem;
 
     /**
-     * @OneToMany (targetEntity="ImagensProjeto", mappedBy="projeto")
+     * @OneToMany (targetEntity="ImagensProjeto", mappedBy="projeto", cascade={"remove", "persist"}, fetch="EAGER")
      */
     private $fotosProjeto;
 
 
     private $carrossel;
+
+    public function __construct()
+    {
+        $this->fotosProjeto = new ArrayCollection();
+    }
 
     public function getCategoria()
     {
@@ -134,14 +143,18 @@ class Projeto
         $this->carrossel = $carrossel;
     }
 
-    public function getFotosProjeto()
+    public function getFotosProjeto() : Collection
     {
         return $this->fotosProjeto;
+        return $this;
     }
 
-    public function setFotosProjeto($fotosProjeto): void
+    public function addFotosProjeto(ImagensProjeto $fotoProjeto)
     {
-        $this->fotosProjeto = $fotosProjeto;
+        $this->fotosProjeto->add($fotoProjeto);
+        $fotoProjeto->setProjeto($this);
+
+        return $this;
     }
 
 
@@ -168,5 +181,7 @@ class Projeto
     {
         return $this->id;
     }
+
+
 
 }
