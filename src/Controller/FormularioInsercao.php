@@ -3,10 +3,12 @@
 namespace Projects\Gavio\Controller;
 
 use Projects\Gavio\Entity\Categoria;
+use Projects\Gavio\Helper\RenderHtmlTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class FormularioInsercao implements RequisitionHandlerInterface
 {
+    use RenderHtmlTrait;
 
     /**
      * @var \Doctrine\ORM\EntityRepository|\Doctrine\Persistence\ObjectRepository
@@ -23,7 +25,10 @@ class FormularioInsercao implements RequisitionHandlerInterface
     {
         $titulo = 'Novo Projeto';
         $categorias = $this->repositorioDeCategorias->findAll();
-        require __DIR__ . '/../../view/projetos/formulario.php';
-        return;
+
+        echo $this->RenderHtml('projetos/formulario.php',[
+            'titulo' => $titulo,
+            'categorias' => $categorias
+        ]);
     }
 }

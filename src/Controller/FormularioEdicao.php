@@ -4,10 +4,12 @@ namespace Projects\Gavio\Controller;
 
 use Projects\Gavio\Entity\Categoria;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\RenderHtmlTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class FormularioEdicao implements RequisitionHandlerInterface
 {
+    use RenderHtmlTrait;
     /**
      * @var \Doctrine\ORM\EntityRepository|\Doctrine\Persistence\ObjectRepository
      */
@@ -41,6 +43,12 @@ class FormularioEdicao implements RequisitionHandlerInterface
        $titulo = 'Alterar Projeto';
        $categorias = $this->repositorioDeCategorias->findAll();
        $projeto = $this->repositorioDeProjetos->find($id);
-       require __DIR__ . '/../../view/projetos/formulario-edicao.php';
+
+       echo $this->RenderHtml(
+           'projetos/formulario-edicao.php',[
+               'titulo' => $titulo,
+               'categorias' => $categorias,
+               'projeto' => $projeto
+       ]);
     }
 }

@@ -2,13 +2,18 @@
 
 namespace Projects\Gavio\Controller;
 
+use Projects\Gavio\Helper\RenderHtmlTrait;
+
 class FormularioLogin implements RequisitionHandlerInterface
 {
+    use RenderHtmlTrait;
 
     public function handle(): void
     {
         $titulo = "Login";
-        require __DIR__ . '/../../view/login/formulario.php';
-        return;
+
+        echo $this->RenderHtml('login/formulario.php',[
+            'titulo' => $titulo
+        ]);
     }
 }

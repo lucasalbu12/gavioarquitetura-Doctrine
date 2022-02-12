@@ -4,19 +4,17 @@ namespace Projects\Gavio\Controller;
 
 use Projects\Gavio\Entity\ImagensProjeto;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\RenderHtmlTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class IndividualProjeto implements RequisitionHandlerInterface
 {
 
+    use RenderHtmlTrait;
+
     private \Doctrine\ORM\EntityManagerInterface $repositorioDeProjetos;
 
-    public function __construct()
-    {
 
-
-
-    }
 
     public function handle(): void
     {
@@ -50,7 +48,13 @@ class IndividualProjeto implements RequisitionHandlerInterface
                 return $array;
             });
 
-
-        require __DIR__ . '/../../view/projetos/individual.php';
+        echo $this->RenderHtml('projetos/individual.php',[
+            'id' => $id,
+            'headImgPath' => $headImgPath,
+            'galeryImgPath' => $galeryImgPath,
+            'projeto' => $projeto,
+            'titulo' => $titulo,
+            'fotos' => $fotos
+        ]);
     }
 }

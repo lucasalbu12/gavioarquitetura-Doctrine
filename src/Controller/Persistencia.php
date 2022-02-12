@@ -54,9 +54,6 @@ class Persistencia implements RequisitionHandlerInterface
 
         $novaCategoria->addProjeto($projeto);
 
-
-
-
         if(!is_null($id) && $id !== false){
             $projeto->setId($id);
 
@@ -67,20 +64,18 @@ class Persistencia implements RequisitionHandlerInterface
                 unlink($imgPath.$imagemPrincipal);
             }
 
-
-
             $this->entityManager->merge($projeto);
 
         } else{
+
             $projeto->setArquivoImagem($arquivo['name']);
             $this->entityManager->persist($projeto);
 
         }
 
-
         $this->entityManager->flush();
 
-        header('Location: /lista-projetos?categoriaId=1');
+        header('Location: /lista-projetos?categoriaId='.$categoria);
 
     }
 }
