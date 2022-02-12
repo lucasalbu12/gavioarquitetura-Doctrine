@@ -10,10 +10,8 @@ class FormularioLogin implements RequisitionHandlerInterface
 
     public function handle(): void
     {
-        $titulo = "Login";
-
         echo $this->RenderHtml('login/formulario.php',[
-            'titulo' => $titulo
+            'titulo' => 'Login'
         ]);
     }
 }

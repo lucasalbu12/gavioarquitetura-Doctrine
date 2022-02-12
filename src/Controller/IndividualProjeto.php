@@ -18,11 +18,7 @@ class IndividualProjeto implements RequisitionHandlerInterface
 
     public function handle(): void
     {
-        $id = filter_input(
-            INPUT_GET,
-            'id',
-            FILTER_VALIDATE_INT
-        );
+        $id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
 
         if(is_null($id) || $id === false){
             header('Location: /lista-projetos');
@@ -36,10 +32,7 @@ class IndividualProjeto implements RequisitionHandlerInterface
         $projeto = $repositorioDeProjetos->find($id);
         $titulo = $projeto->getTitulo();
 
-        $fotos = $projeto
-            ->getFotosProjeto()
-            ->map(function (ImagensProjeto $foto){
-
+        $fotos = $projeto->getFotosProjeto()->map(function (ImagensProjeto $foto) {
 
                 $array = [
                     'nome' => $foto->getNome(),

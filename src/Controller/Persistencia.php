@@ -5,10 +5,13 @@ namespace Projects\Gavio\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Projects\Gavio\Entity\Categoria;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\FlashMessageTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class Persistencia implements RequisitionHandlerInterface
 {
+    use FlashMessageTrait;
+
     private EntityManagerInterface $entityManager;
     private $repositorioDeCategorias;
 
@@ -73,6 +76,8 @@ class Persistencia implements RequisitionHandlerInterface
 
         }
 
+
+        $this->defineMensagem('success', 'Projeto adicionado com sucesso');
         $this->entityManager->flush();
 
         header('Location: /lista-projetos?categoriaId='.$categoria);

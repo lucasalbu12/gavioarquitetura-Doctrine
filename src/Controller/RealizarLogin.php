@@ -49,7 +49,10 @@ class RealizarLogin implements RequisitionHandlerInterface
             return;
         }
 
-        header('Location: /listar-projetos');
+        $_SESSION['logado'] = true;
+
+        $this->defineMensagem('success', 'Login efetuado com sucesso');
+        header('Location: /lista-projetos');
 
     }
 }

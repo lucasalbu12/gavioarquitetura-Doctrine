@@ -7,6 +7,6 @@ trait FlashMessageTrait
     public function defineMensagem(string $tipo, string $mensagem):void
     {
         $_SESSION['mensagem'] = $mensagem;
-        $_SESSION['tipo-mensagem'] = $tipo;
+        $_SESSION['tipo_mensagem'] = $tipo;
     }
 }

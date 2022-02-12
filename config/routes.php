@@ -8,13 +8,15 @@ use Projects\Gavio\Controller\{EditaProjeto,
     FormularioLogin,
     IndividualProjeto,
     ListarProjetos,
+    Logout,
     PersisteFotosProjeto,
     Persistencia,
     RealizarLogin};
 
 $rotas = [
-  '/login' => FormularioLogin::class,
+    '/login' => FormularioLogin::class,
     '/realiza-login' => RealizarLogin::class,
+    '/logout'=> Logout::class,
     '/lista-projetos' => ListarProjetos::class,
     '/novo-projeto' => FormularioInsercao::class,
     '/salvar-projeto' => Persistencia::class,

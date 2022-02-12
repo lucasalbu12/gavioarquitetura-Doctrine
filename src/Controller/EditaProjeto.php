@@ -4,11 +4,14 @@ namespace Projects\Gavio\Controller;
 
 use Projects\Gavio\Entity\Categoria;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\EditFieldTrait;
+use Projects\Gavio\Helper\FlashMessageTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class EditaProjeto implements RequisitionHandlerInterface
 {
-
+    use FlashMessageTrait;
+    use EditFieldTrait;
     private \Doctrine\ORM\EntityManagerInterface $entityManager;
 
     public function __construct()
@@ -48,46 +51,19 @@ class EditaProjeto implements RequisitionHandlerInterface
 
         /* SUBMITS */
 
-        if(isset($editorTitulo)){
-            $projeto->setTitulo($titulo);
-            $this->entityManager->flush();
-            header('Location: /lista-projetos');
-            die();
-        }
+
+        $this->editField($editorTitulo, $projeto->setTitulo($titulo));
+        $this->editField($editorArea, $projeto->setArea($area));
+        $this->editField($editorData, $projeto->setAno($ano));
+        $this->editField($editorEndereco, $projeto->setEndereco($endereco));
+        $this->editField($editorDescricao, $projeto->setDescricao($descricao));
 
         if(isset($editorCategoia)){
             $novaCategoria = $this->entityManager->getRepository(Categoria::class)->find($categoria);
             $novaCategoria->addProjeto($projeto);
             $this->entityManager->merge($projeto);
             $this->entityManager->flush();
-            header('Location: /lista-projetos?categoriaId=1');
-            die();
-        }
-
-        if(isset($editorArea)){
-            $projeto->setArea($area);
-            $this->entityManager->flush();
-            header('Location: /lista-projetos?categoriaId=1');
-            die();
-        }
-
-        if(isset($editorData)){
-            $projeto->setAno($ano);
-            $this->entityManager->flush();
-            header('Location: /lista-projetos?categoriaId=1');
-            die();
-        }
-
-        if(isset($editorEndereco)){
-            $projeto->setEndereco($endereco);
-            $this->entityManager->flush();
-            header('Location: /lista-projetos?categoriaId=1');
-            die();
-        }
-
-        if(isset($editorDescricao)){
-            $projeto->setDescricao($descricao);
-            $this->entityManager->flush();
+            $this->defineMensagem('success', 'Campo alterado com sucesso');
             header('Location: /lista-projetos?categoriaId=1');
             die();
         }
@@ -113,24 +89,13 @@ class EditaProjeto implements RequisitionHandlerInterface
             }
 
             $projeto->setArquivoImagem($arquivo['name']);
+
             $this->entityManager->flush();
+            $this->defineMensagem('success', 'Campo alterado com sucesso');
             header('Location: /lista-projetos?categoriaId=1');
             die();
         }
 
 
-
-
-//
-//
-//
-//
-//
-//
-//        $projeto->setId($id);
-//        $this->entityManager->merge($projeto);
-//        $this->entityManager->flush();
-//
-//        header('Location: /lista-projetos');
     }
 }
