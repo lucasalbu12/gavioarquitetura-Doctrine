@@ -21,17 +21,14 @@ class Persistencia implements RequisitionHandlerInterface
 
     public function handle(): void
     {
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         $imagemPrincipal = filter_input(INPUT_POST, 'imagemAtual', FILTER_SANITIZE_STRING);
-
-        $categoriaId = filter_input(INPUT_POST, 'categoria_id', FILTER_VALIDATE_INT);
+        $categoria = filter_input(INPUT_POST, 'categoria', FILTER_VALIDATE_INT);
         $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
         $area = filter_input(INPUT_POST, 'area', FILTER_SANITIZE_STRING);
         $ano = filter_input(INPUT_POST, 'ano', FILTER_SANITIZE_STRING);
         $endereco = filter_input(INPUT_POST, 'endereco', FILTER_SANITIZE_STRING);
         $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
-
-        $tituloAtual = filter_input(INPUT_POST, 'tituloAtual', FILTEr);
-
 
         $imgPath = __DIR__ . '/../../src/Images/projects/head/';
         $arquivo = $_FILES['arquivoImagem'];
@@ -47,27 +44,18 @@ class Persistencia implements RequisitionHandlerInterface
 
 
         $projeto = new Projeto();
-
-
         $projeto->setTitulo($titulo);
         $projeto->setArea($area);
         $projeto->setAno($ano);
         $projeto->setEndereco($endereco);
         $projeto->setDescricao($descricao);
 
-        switch ($categoriaId){
-            case $categoriaId === 1:
-                $projeto->setCategoria('Residencial');
-                break;
-            case $categoriaId === 2:
-                $projeto->setCategoria('Interiores');
-                break;
-            case $categoriaId === 3:
-                $projeto->setCategoria('Comercial');
-                break;
-        }
+        $novaCategoria = $this->entityManager->getRepository(Categoria::class)->find($categoria);
 
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $novaCategoria->addProjeto($projeto);
+
+
+
 
         if(!is_null($id) && $id !== false){
             $projeto->setId($id);
@@ -92,7 +80,7 @@ class Persistencia implements RequisitionHandlerInterface
 
         $this->entityManager->flush();
 
-        header('Location: /lista-projetos');
+        header('Location: /lista-projetos?categoriaId=1');
 
     }
 }

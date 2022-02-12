@@ -6,8 +6,8 @@
 
 
         <?php foreach($categorias as $categoria): ?>
-            <?= $categoria->getNomeCategoria(); ?>
-            <input type="radio" name="categoria_id" class="form-group" value="<?= $categoria->getId(); ?>" readonly>
+            <?= $categoria->getNome(); ?>
+            <input type="radio" name="categoria" class="form-group" value="<?= $categoria->getId(); ?>" readonly>
         <?php endforeach?>
 
 

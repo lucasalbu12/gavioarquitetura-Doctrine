@@ -7,8 +7,8 @@
 
             <div class="form-group input-categorias">
                 <?php foreach($categorias as $categoria): ?>
-                    <?= $categoria->getNomeCategoria(); ?>
-                    <input class="form-group" type="radio" name="categoria_id" class="form-group" value="<?= $categoria->getId(); ?>">
+                    <?= $categoria->getNome(); ?>
+                    <input class="form-group" type="radio" name="categoria" class="form-group" value="<?= $categoria->getId(); ?>">
                 <?php endforeach; ?>
                 <input type="submit" class="form-group" value="Editar categoria" name="editorCategoria" class="btn btn-primary" readonly>
             </div>

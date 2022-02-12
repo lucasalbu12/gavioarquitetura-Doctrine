@@ -5,7 +5,6 @@
             <a href="/lista-projetos" class="btn btn-primary">Voltar</a>
             <div class="d-flex coluna-individual">Id:<?= $projeto->getId(); ?></div>
             <div class="d-flex coluna-individual"><img src="<?= $headImgPath.$projeto->getArquivoImagem();?>" alt="" style="max-width: 250px"></div>
-            <div class="d-flex coluna-individual">Categoria: <?= $projeto->getCategoria(); ?></div>
             <div class="d-flex coluna-individual">Endereço: <?= $projeto->getEndereco(); ?></div>
             <div class="d-flex coluna-individual">Descrição:<?= $projeto->getDescricao(); ?></div>
 
@@ -21,7 +20,7 @@
         <form action="/persiste-fotos?id=<?= $projeto->getId(); ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input class="form-group" type="hidden" name='MAX_FILE_SIZE' value='999999999'>
-                <input type="file" name='arquivoImagem' required>
+                <input type="file" name='arquivoImagem[]' required multiple="multiple">
                 <input type="submit" name="addFotosProjeto"  value="Adicionar Imagens" class="btn btn-primary btn-sm">
             </div>
         </form>

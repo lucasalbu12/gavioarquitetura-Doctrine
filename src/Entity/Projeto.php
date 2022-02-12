@@ -20,7 +20,7 @@ class Projeto
     private $id;
 
     /**
-     * @Column (type="string")
+     * @ManyToOne  (targetEntity="Categoria")
      */
     private $categoria;
 
@@ -36,7 +36,7 @@ class Projeto
      * @Column (type="string")
      */
     private $ano;
-        /**
+    /**
      * @Column (type="string")
      */
     private $endereco;
@@ -63,14 +63,15 @@ class Projeto
         $this->fotosProjeto = new ArrayCollection();
     }
 
-    public function getCategoria()
+    public function getCategoria() : Categoria
     {
         return $this->categoria;
     }
 
-    public function setCategoria($categoria): void
+    public function setCategoria(Categoria $categoria): self
     {
         $this->categoria = $categoria;
+        return $this;
     }
 
     public function getTitulo()
@@ -146,7 +147,6 @@ class Projeto
     public function getFotosProjeto() : Collection
     {
         return $this->fotosProjeto;
-        return $this;
     }
 
     public function addFotosProjeto(ImagensProjeto $fotoProjeto)

@@ -21,47 +21,53 @@ class Categoria
     /**
      * @Column (type="string")
      */
-    private $nomeCategoria;
+    private $nome;
 
-
+    /**
+     * @OneToMany (targetEntity="Projeto", mappedBy="categoria")
+     */
+    private $projetos;
 
     public function __construct()
     {
         $this->projetos = new ArrayCollection();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNomeCategoria()
-    {
-        return $this->nomeCategoria;
-    }
 
-
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
+
     public function setId($id): void
     {
         $this->id = $id;
     }
 
-
-    /**
-     * @param mixed $nomeCategoria
-     */
-    public function setNomeCategoria($nomeCategoria): void
+    public function getNome()
     {
-        $this->nomeCategoria = $nomeCategoria;
+        return $this->nome;
+    }
+
+    public function setNome($nome): self
+    {
+        $this->nome = $nome;
+        return $this;
+    }
+
+
+    public function getProjeto() : Collection
+    {
+        return $this->projetos;
+    }
+
+
+    public function addProjeto(Projeto $projeto)
+    {
+        $this->projetos->add($projeto);
+        $projeto->setCategoria($this);
+        return $this;
     }
 
 

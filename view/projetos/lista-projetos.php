@@ -1,13 +1,17 @@
 <?php include __DIR__ . '/../inicio-html.php'; ?>
 
 <a href="/novo-projeto" class="btn btn-primary mb-2">Novo Projeto</a>
+<div class="botoes-categoria">
+    <a href="/lista-projetos?categoriaId=<?= $residencialId;?>" class="btn btn-primary btn-sm">Residencial</a>
+    <a href="/lista-projetos?categoriaId=<?= $interioresId;?>" class="btn btn-primary btn-sm">Interiores</a>
+    <a href="/lista-projetos?categoriaId=<?= $comercialId;?>" class="btn btn-primary btn-sm">Comercial</a>
+</div>
 <ul class="list-group">
     <?php foreach ($projetos as $projeto): ?>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <div><?= $projeto->getId(); ?></div>
             <div><?= $projeto->getTitulo(); ?></div>
             <div><img src="<?= $headImgPath.$projeto->getArquivoImagem();?>" alt="" style="max-width: 250px"></div>
-            <div><?= $projeto->getCategoria(); ?></div>
 
 
             <div>
