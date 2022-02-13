@@ -53,9 +53,15 @@ class Persistencia implements RequisitionHandlerInterface
         $projeto->setEndereco($endereco);
         $projeto->setDescricao($descricao);
 
-        $novaCategoria = $this->entityManager->getRepository(Categoria::class)->find($categoria);
+        if(isset($categoria)){
+            $novaCategoria = $this->entityManager->getRepository(Categoria::class)->find($categoria);
+            $novaCategoria->addProjeto($projeto);
+        } else{
+            $novaCategoria = $this->entityManager->getRepository(Categoria::class)->find(1);
+            $novaCategoria->addProjeto($projeto);
+        }
 
-        $novaCategoria->addProjeto($projeto);
+
 
         if(!is_null($id) && $id !== false){
             $projeto->setId($id);
@@ -66,9 +72,7 @@ class Persistencia implements RequisitionHandlerInterface
                 $projeto->setArquivoImagem($arquivo['name']);
                 unlink($imgPath.$imagemPrincipal);
             }
-
             $this->entityManager->merge($projeto);
-
         } else{
 
             $projeto->setArquivoImagem($arquivo['name']);

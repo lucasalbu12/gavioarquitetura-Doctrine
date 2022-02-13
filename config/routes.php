@@ -7,6 +7,7 @@ use Projects\Gavio\Controller\{EditaProjeto,
     FormularioInsercao,
     FormularioLogin,
     IndividualProjeto,
+    ListaPerfis,
     ListarProjetos,
     Logout,
     PersisteFotosProjeto,
@@ -25,7 +26,8 @@ $rotas = [
     '/editar-projeto' => EditaProjeto::class,
     '/individual-projeto' => IndividualProjeto::class,
     '/persiste-fotos' => PersisteFotosProjeto::class,
-    '/exclui-foto' => ExcluiFotoProjeto::class
+    '/exclui-foto' => ExcluiFotoProjeto::class,
+    '/perfis' => ListaPerfis::class
 ];
 
 return $rotas;

@@ -15,6 +15,12 @@
                 <li class="nav-item active">
                     <a href="/logout" class="nav-link">Sair</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/lista-projetos" class="nav-link active">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/perfis" class="nav-link active">Perfis</a>
+                </li>
             </ul>
 
         </nav>
