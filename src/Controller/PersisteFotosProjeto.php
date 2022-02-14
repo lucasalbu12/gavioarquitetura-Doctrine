@@ -24,27 +24,6 @@ class PersisteFotosProjeto implements RequisitionHandlerInterface
 
         $projeto = $this->entityManager->getRepository(Projeto::class)->find($id);
 
-        $imgGalleryPath = __DIR__ . '/../../src/Images/projects/imgs/';
-
-//        if(isset($addFoto)){
-//
-//            $arquivoNovo = explode('.', $arquivos['name']);
-//            $fileActualExt = strtolower(end($arquivoNovo));
-//            $allowedExt = ['jpg', 'jpeg', 'png'];
-//
-//            if($arquivoNovo[sizeof($arquivoNovo)-1] != in_array($fileActualExt, $allowedExt)){
-//                die("Você não pode fazer o upload deste tipo de arquivo");
-//            } else{
-//                move_uploaded_file($arquivos['tmp_name'], $imgGalleryPath.$arquivos['name']);
-//
-//            }
-//
-//        $foto->setNome($arquivos['name']);
-//        $this->entityManager->persist($foto);
-//        $projeto->addFotosProjeto($foto);
-//        $this->entityManager->flush();
-//
-//        }
 
         if(isset($addFoto)){
             foreach ($arquivos['name'] as $k => $v):

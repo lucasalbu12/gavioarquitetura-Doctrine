@@ -10,7 +10,7 @@
 
 
                     <div>
-                        <a href="/editar-perfil?id=<?= $perfil->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
+                        <a href="/formulario-perfil?id=<?= $perfil->getId(); ?>" class="btn btn-primary btn-sm">Alterar</a>
                     </div>
 
                 </li>

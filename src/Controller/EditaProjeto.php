@@ -70,26 +70,10 @@ class EditaProjeto implements RequisitionHandlerInterface
 
         if(isset($editorImagem)){
             $imagemAtual = $projeto->getArquivoImagem();
-
             $imgPath = __DIR__ . '/../../src/Images/projects/head/';
-
-            $arquivoNovo = explode('.', $arquivo['name']);
-            $fileActualExt = strtolower(end($arquivoNovo));
-            $allowedExt = ['jpg', 'jpeg', 'png'];
-
-
-
-            if($arquivoNovo[sizeof($arquivoNovo)-1] != in_array($fileActualExt, $allowedExt)){
-                die("Você não pode fazer o upload deste tipo de arquivo");
-            } else{
-                move_uploaded_file($arquivo['tmp_name'], $imgPath.$arquivo['name']);
-                unlink($imgPath.$imagemAtual);
-
-
-            }
-
+            $this->uploadImage($arquivo, $imgPath);
+            unlink($imgPath.$imagemAtual);
             $projeto->setArquivoImagem($arquivo['name']);
-
             $this->entityManager->flush();
             $this->defineMensagem('success', 'Campo alterado com sucesso');
             header('Location: /lista-projetos?categoriaId=1');

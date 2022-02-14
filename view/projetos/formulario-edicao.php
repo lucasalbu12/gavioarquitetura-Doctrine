@@ -46,11 +46,6 @@
             </div>
 
 
-
-
-            <button class="btn btn-primary btn-default btn-sm">Salvar</button>
-
-
         </form>
 
     </div>

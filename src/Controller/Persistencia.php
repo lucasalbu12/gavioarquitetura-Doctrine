@@ -5,12 +5,14 @@ namespace Projects\Gavio\Controller;
 use Doctrine\ORM\EntityManagerInterface;
 use Projects\Gavio\Entity\Categoria;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\EditFieldTrait;
 use Projects\Gavio\Helper\FlashMessageTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class Persistencia implements RequisitionHandlerInterface
 {
     use FlashMessageTrait;
+    use EditFieldTrait;
 
     private EntityManagerInterface $entityManager;
     private $repositorioDeCategorias;
@@ -32,18 +34,10 @@ class Persistencia implements RequisitionHandlerInterface
         $ano = filter_input(INPUT_POST, 'ano', FILTER_SANITIZE_STRING);
         $endereco = filter_input(INPUT_POST, 'endereco', FILTER_SANITIZE_STRING);
         $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_STRING);
+        $arquivo = $_FILES['arquivoImagem'];
 
         $imgPath = __DIR__ . '/../../src/Images/projects/head/';
-        $arquivo = $_FILES['arquivoImagem'];
-        $arquivoNovo = explode('.', $arquivo['name']);
-        $fileActualExt = strtolower(end($arquivoNovo));
-        $allowedExt = ['jpg', 'jpeg', 'png'];
-
-        if($arquivoNovo[sizeof($arquivoNovo)-1] != in_array($fileActualExt, $allowedExt)){
-            die("Você não pode fazer o upload deste tipo de arquivo");
-        } else{
-            move_uploaded_file($arquivo['tmp_name'], $imgPath.$arquivo['name']);
-        }
+        $this->uploadImage($arquivo, $imgPath);
 
 
         $projeto = new Projeto();
