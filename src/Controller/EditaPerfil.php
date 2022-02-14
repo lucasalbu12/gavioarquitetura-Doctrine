@@ -46,6 +46,7 @@ class EditaPerfil implements RequisitionHandlerInterface
             $this->defineMensagem('success', 'Imagem alterada com sucesso');
             header('Location: /perfis');
             die();
+
         }
 
     }

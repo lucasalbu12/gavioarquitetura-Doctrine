@@ -4,10 +4,12 @@ namespace Projects\Gavio\Controller;
 
 use Projects\Gavio\Entity\Categoria;
 use Projects\Gavio\Entity\Projeto;
+use Projects\Gavio\Helper\RenderHtmlTrait;
 use Projects\Gavio\Infra\EntityManagerCreator;
 
 class ListarProjetos implements RequisitionHandlerInterface
 {
+    use RenderHtmlTrait;
     /**
      * @var \Doctrine\ORM\EntityRepository|\Doctrine\Persistence\ObjectRepository
      */
@@ -29,9 +31,6 @@ class ListarProjetos implements RequisitionHandlerInterface
 
     public function handle(): void
     {
-        $residencialId = 1;
-        $interioresId = 2;
-        $comercialId = 3;
         $categoriaId = filter_input(INPUT_GET, 'categoriaId', FILTER_VALIDATE_INT);
 
         $categorias = $this->repositorioDeCategorias->findBy([
@@ -40,8 +39,16 @@ class ListarProjetos implements RequisitionHandlerInterface
         $projetos = $this->repositorioDeProjetos->findBy([
             'categoria' => $categorias
         ]);
-        $titulo = 'Lista de Projetos';
-        $headImgPath = '../../src/Images/projects/head/';
-        require __DIR__ . '/../../view/projetos/lista-projetos.php';
+
+        echo $this->RenderHtml('projetos/lista-projetos.php', [
+            'titulo' => 'Lista de projetos',
+            'headImgPath' => '../../src/Images/projects/head/',
+            'projetos' => $projetos,
+            'categorias' => $categorias,
+            'categoriaId' => $categoriaId,
+            'residencialId' => 1,
+            'interioresId' => 2,
+            'comercialId' => 3
+        ]);
     }
 }

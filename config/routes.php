@@ -1,6 +1,7 @@
 <?php
 
-use Projects\Gavio\Controller\{EditaPerfil,
+use Projects\Gavio\Controller\{Carrossel,
+    EditaPerfil,
     EditaProjeto,
     ExcluiFotoProjeto,
     Exclusao,
@@ -31,7 +32,8 @@ $rotas = [
     '/exclui-foto' => ExcluiFotoProjeto::class,
     '/perfis' => ListaPerfis::class,
     '/formulario-perfil' => FormularioPerfil::class,
-    '/edita-perfil' => EditaPerfil::class
+    '/edita-perfil' => EditaPerfil::class,
+    '/home' => Carrossel::class
 ];
 
 return $rotas;

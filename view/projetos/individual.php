@@ -25,7 +25,8 @@
             </div>
         </form>
         <div class="fotos-projeto">
-            <table class="table">
+
+            <table class="table display" id="photo-table">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -37,7 +38,7 @@
                 <tbody>
                 <?php foreach ($fotos as $foto):?>
                 <tr>
-                    <th scope="row"><?= $foto['id']?></th>
+                    <td><?= $foto['id']?></td>
                     <td><?= $foto['nome']; ?></td>
                     <td><img src="<?= $galeryImgPath.$foto['nome'];?>" alt="" class="arquivo-foto"></td>
                     <td><a href="/exclui-foto?id=<?= $foto['id']?>&nome=<?= $foto['nome']; ?>&idProjeto=<?= $projeto->getId(); ?>" class="btn btn-primary btn-sm">Excluir</a></td>
@@ -50,8 +51,12 @@
     </div>
 </div>
 
-
-
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#photo-table').DataTable();
+    } );
+</script>
 <?php include __DIR__ . '/../final-html.php'; ?>
 
